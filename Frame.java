@@ -7,13 +7,13 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-
-
-
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
 public class Frame extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
@@ -43,7 +43,7 @@ public class Frame extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		
 		JPanel Main_Menu = new JPanel();
-		Main_Menu.setBounds(59, 78, 367, 623);
+		Main_Menu.setBounds(67, 78, 367, 623);
 		contentPane.add(Main_Menu);
 		Main_Menu.setLayout(null);
 		
@@ -92,8 +92,8 @@ public class Frame extends JFrame implements ActionListener{
 		Main_Menu.add(menuControl.getOthers().geto5());
 		Main_Menu.add(menuControl.getOthers().geto6());
 		
-		menuControl.showFoods(true);
-	    menuControl.showDrinks(false);
+	   menuControl.showFoods(true);
+	   menuControl.showDrinks(false);
 	   menuControl.showOthers(false);
 		
 		// for the Checkout panel
@@ -116,7 +116,28 @@ public class Frame extends JFrame implements ActionListener{
 		
 		
 		
-	}
+		ImageIcon originalIcon = new ImageIcon("C:\\JAVA.JOLLIBED\\Pictures\\Jollibed logo.png");
+		Image originalImage = originalIcon.getImage();
+
+		// Resize the image
+		Image resizedImage = originalImage.getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+		ImageIcon resizedIcon = new ImageIcon(resizedImage);
+
+		// Create JLabel for the logo
+		JLabel Logo = new JLabel();
+		Logo.setIcon(resizedIcon);
+		Logo.setBounds(62, -28, 150, 150); // Match label size to resized image
+
+		contentPane.add(Logo);
+
+		// Refresh UI to ensure the JLabel displays properly
+		contentPane.revalidate();
+		contentPane.repaint();
+
+		
+		
+		
+	}	
 
 
 	@Override
@@ -150,3 +171,4 @@ public class Frame extends JFrame implements ActionListener{
 		
 	}
 }
+
