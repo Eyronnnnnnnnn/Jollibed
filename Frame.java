@@ -5,6 +5,7 @@ package Jollibed2;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Image;
@@ -13,6 +14,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 public class Frame extends JFrame implements ActionListener{
 
@@ -20,6 +23,8 @@ public class Frame extends JFrame implements ActionListener{
 	private JPanel contentPane;
 	private MenuControl menuControl;
     JButton btnFoods,btnDrinks,btnOthers ,CheckOut_Btn;
+    private DefaultListModel<String> selectedItemsModel;
+    private JList<String> selectedItemsList;
     
 	//Drinks Drinkbtn;
   
@@ -103,6 +108,13 @@ public class Frame extends JFrame implements ActionListener{
 		CheckOut.setBounds(478, 78, 367, 623);
 		contentPane.add(CheckOut);
 		
+		  // JList to display selected items
+        selectedItemsModel = new DefaultListModel<>();
+        selectedItemsList = new JList<>(selectedItemsModel);
+        JScrollPane scrollPane = new JScrollPane(selectedItemsList);
+        scrollPane.setBounds(50, 50, 250, 200);
+        CheckOut.add(scrollPane);
+		
 		CheckOut_Btn = new JButton("CHECKOUT");
 		CheckOut_Btn.setBackground(new Color(255, 255, 255));
 		CheckOut_Btn.setForeground(Color.BLACK);
@@ -133,11 +145,21 @@ public class Frame extends JFrame implements ActionListener{
 		// Refresh UI to ensure the JLabel displays properly
 		contentPane.revalidate();
 		contentPane.repaint();
+		
+		
+		    menuControl.getDrinks().getD1().addActionListener(this);
+	        menuControl.getDrinks().getD2().addActionListener(this);
+	        menuControl.getDrinks().getD3().addActionListener(this);
+	        menuControl.getDrinks().getD4().addActionListener(this);
+	        menuControl.getDrinks().getD5().addActionListener(this);
+	        menuControl.getDrinks().getD6().addActionListener(this);
 
 		
 		
 		
 	}	
+	
+	
 
 
 	@Override
@@ -166,7 +188,19 @@ public class Frame extends JFrame implements ActionListener{
 			 menuControl.showDrinks(false);
 			 menuControl.showOthers(true);
 			
-		}
+		}else if (source == menuControl.getDrinks().getD1()) {
+            selectedItemsModel.addElement("Siken 1                400$");
+        } else if (source == menuControl.getDrinks().getD2()) {
+            selectedItemsModel.addElement("Siken 2                240$");
+        } else if (source == menuControl.getDrinks().getD3()) {
+            selectedItemsModel.addElement("Siken 3                100$");
+        } else if (source == menuControl.getDrinks().getD4()) {
+        	selectedItemsModel.addElement("Siken 3                 60$");
+        } else if (source == menuControl.getDrinks().getD5()) {
+        	selectedItemsModel.addElement("Siken 3                 70$");
+        } else if (source == menuControl.getDrinks().getD6()) {
+            selectedItemsModel.addElement("Siken 6");
+        }
 		
 		
 	}
