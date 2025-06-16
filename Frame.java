@@ -165,6 +165,12 @@ import java.awt.Font;
 	        menuControl.getDrinks().getD4().addActionListener(this);
 	        menuControl.getDrinks().getD5().addActionListener(this);
 	        menuControl.getDrinks().getD6().addActionListener(this);
+	        menuControl.getFoods().getc1().addActionListener(this);
+	        menuControl.getFoods().getc2().addActionListener(this);
+	        menuControl.getFoods().getc3().addActionListener(this);
+	        menuControl.getFoods().getc4().addActionListener(this);
+	        menuControl.getFoods().getc5().addActionListener(this);
+	        menuControl.getFoods().getc6().addActionListener(this);
 
 		
 		
@@ -211,6 +217,18 @@ import java.awt.Font;
         	selectedItemsModel.addElement(" Siken 3                        70$");
         } else if (source == menuControl.getDrinks().getD6()) {
             selectedItemsModel.addElement(" Siken 6                        25$");
+        }else if (source == menuControl.getFoods().getc1()) {
+            selectedItemsModel.addElement(" Drink 1                       400$");
+        } else if (source == menuControl.getFoods().getc2()) {
+            selectedItemsModel.addElement(" Drink 2                       240$");
+        } else if (source == menuControl.getFoods().getc3()) {
+            selectedItemsModel.addElement(" Drink 3                       100$");
+        } else if (source == menuControl.getFoods().getc4()) {
+        	selectedItemsModel.addElement(" Drink 4                        60$");
+        } else if (source == menuControl.getFoods().getc5()) {
+        	selectedItemsModel.addElement(" Drink 5                        70$");
+        } else if (source == menuControl.getFoods().getc6()) {
+            selectedItemsModel.addElement(" Drink 6                        25$");
         };
 		
         
