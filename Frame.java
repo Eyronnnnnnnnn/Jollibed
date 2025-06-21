@@ -6,6 +6,7 @@ import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.List;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -14,6 +15,7 @@ import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 
 
@@ -26,6 +28,9 @@ import java.awt.Font;
     private DefaultListModel<String> selectedItemsModel;
     private JList<String> selectedItemsList;
     private JButton Remove_btn;
+    JLabel howmuch;
+    public float sum;
+    int price;
     
 	//Drinks Drinkbtn;
   
@@ -40,6 +45,7 @@ import java.awt.Font;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1350, 770);
 	    menuControl = new MenuControl();
+	    
 	   
 		
 		contentPane = new JPanel();
@@ -49,6 +55,7 @@ import java.awt.Font;
 		contentPane.setLayout(null);
 		
 		JPanel Main_Menu = new JPanel();
+		Main_Menu.setBackground(new Color(251, 251, 251));
 		Main_Menu.setBounds(67, 78, 367, 623);
 		contentPane.add(Main_Menu);
 		Main_Menu.setLayout(null);
@@ -130,7 +137,28 @@ import java.awt.Font;
 		Remove_btn.setForeground(Color.BLACK);
 		Remove_btn.setBackground(Color.WHITE);
 		Remove_btn.setBounds(187, 555, 132, 39);
+		
+		
+		Remove_btn.addActionListener(e ->{	
+			
+		int selectedIndex = selectedItemsList.getSelectedIndex();
+		if(selectedIndex != -1) {
+			
+			selectedItemsModel.remove(selectedIndex);
+			howmuch.setText("TOTAL: ₱" + sum);
+			
+			
+		  }	
+		});
+		
 		CheckOut.add(Remove_btn);
+		
+		
+		
+		howmuch = new JLabel("TOTAL: " + sum);
+		howmuch.setBounds(15,430,300,30);  // this is for the total text inside the checkout panel 
+		howmuch.setFont(new Font("Ariel",Font.BOLD, 20));
+		CheckOut.add(howmuch);
 		
 
 		JPanel Reciept = new JPanel();
@@ -206,33 +234,57 @@ import java.awt.Font;
 			 menuControl.showOthers(true);
 			
 		}else if (source == menuControl.getDrinks().getD1()) {
-            selectedItemsModel.addElement(" Siken 1                       400$");
-        } else if (source == menuControl.getDrinks().getD2()) {
-            selectedItemsModel.addElement(" Siken 2                       240$");
-        } else if (source == menuControl.getDrinks().getD3()) {
-            selectedItemsModel.addElement(" Siken 3                       100$");
+			sum += 400;
+			howmuch.setText("TOTAL: ₱" + sum);
+            selectedItemsModel.addElement(" Siken 1                       400₱");
+        }
+		
+		else if (source == menuControl.getDrinks().getD2()) {
+        	sum += 240;
+			howmuch.setText("TOTAL: ₱" + sum);
+            selectedItemsModel.addElement(" Siken 2                       240₱");
+        } 
+		
+		else if (source == menuControl.getDrinks().getD3()) {
+        	sum += 100;
+			howmuch.setText("TOTAL: ₱" + sum);
+            selectedItemsModel.addElement(" Siken 3                       100₱");
         } else if (source == menuControl.getDrinks().getD4()) {
-        	selectedItemsModel.addElement(" Siken 3                        60$");
-        } else if (source == menuControl.getDrinks().getD5()) {
-        	selectedItemsModel.addElement(" Siken 3                        70$");
-        } else if (source == menuControl.getDrinks().getD6()) {
-            selectedItemsModel.addElement(" Siken 6                        25$");
-        }else if (source == menuControl.getFoods().getc1()) {
-            selectedItemsModel.addElement(" Drink 1                       400$");
+        	sum += 60;
+			howmuch.setText("TOTAL: ₱" + sum);
+        	selectedItemsModel.addElement(" Siken 3                        60₱");
+        } 
+        
+        else if (source == menuControl.getDrinks().getD5()) {
+        	sum += 70;
+			howmuch.setText("TOTAL: ₱" + sum);
+        	selectedItemsModel.addElement(" Siken 3                        70₱");
+        } 
+        
+        else if (source == menuControl.getDrinks().getD6()) {
+        	sum += 25;
+			howmuch.setText("TOTAL: ₱" + sum);
+            selectedItemsModel.addElement(" Siken 6                        25₱");
+        }
+		
+		
+		
+        else if (source == menuControl.getFoods().getc1()) {
+        	
+            selectedItemsModel.addElement(" Drink 1                       400₱");
         } else if (source == menuControl.getFoods().getc2()) {
-            selectedItemsModel.addElement(" Drink 2                       240$");
+            selectedItemsModel.addElement(" Drink 2                       240₱");
         } else if (source == menuControl.getFoods().getc3()) {
-            selectedItemsModel.addElement(" Drink 3                       100$");
+            selectedItemsModel.addElement(" Drink 3                       100₱");
         } else if (source == menuControl.getFoods().getc4()) {
-        	selectedItemsModel.addElement(" Drink 4                        60$");
+        	selectedItemsModel.addElement(" Drink 4                        60₱");
         } else if (source == menuControl.getFoods().getc5()) {
-        	selectedItemsModel.addElement(" Drink 5                        70$");
+        	selectedItemsModel.addElement(" Drink 5                        70₱");
         } else if (source == menuControl.getFoods().getc6()) {
-            selectedItemsModel.addElement(" Drink 6                        25$");
+            selectedItemsModel.addElement(" Drink 6                        25₱");
         };
 		
         
 		
 	}
-	
 }
