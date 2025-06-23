@@ -1,33 +1,45 @@
 package Jollibed2;
+import java.awt.Color;
+import java.awt.Image;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Drinks {
 	
 
 	private JButton d1,d2,d3,d4,d5,d6;
-	
+		
 	public Drinks() {
 		
-		d1 = new JButton("siken1");
+		
+		
+	    
+		d1 = new JButton("drink 1");
 		d1.setBounds(40,30,120,120);
+        d1.setBackground(Color.white);
+       // d1.setOpaque(false);      
+       // d1.setBorderPainted(false);   
+		                                
 		
-		                                  // setters 
-		
-		d2 = new JButton("siken 2");
+   
+	    d2 = new JButton("drink 2");
 		d2.setBounds(40,210,120,120);
+	
 		
 		
-		d3 = new JButton("siken3");
+		
+		d3 = new JButton("drink 3");
 		d3.setBounds(40,390,120,120);
         
-		d4 = new JButton("siken 4");
+		d4 = new JButton("drink 4");
 		d4.setBounds(200,210,120,120);
         
         
-		d5 = new JButton("siken 5");
+		d5 = new JButton("drink 5");
 		d5.setBounds(200,390,120,120);
         
-		d6 = new JButton("siken 6");
+		d6 = new JButton("drink 6");
 		d6.setBounds(200,30,120,120);
 		
 		
