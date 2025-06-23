@@ -25,8 +25,8 @@ import javax.swing.JTextField;
 	private JPanel contentPane;
 	private MenuControl menuControl;
     JButton btnFoods,btnDrinks,btnOthers ,CheckOut_Btn;
-    private DefaultListModel<String> selectedItemsModel;
-    private JList<String> selectedItemsList;
+    public DefaultListModel<String> selectedItemsModel;
+    public JList<String> selectedItemsList;
     private JButton Remove_btn;
     JLabel howmuch;
     public float sum;
@@ -105,8 +105,8 @@ import javax.swing.JTextField;
 		Main_Menu.add(menuControl.getOthers().geto5());
 		Main_Menu.add(menuControl.getOthers().geto6());
 		
-	   menuControl.showFoods(false);
-	   menuControl.showDrinks(true);
+	   menuControl.showFoods(true);
+	   menuControl.showDrinks(false);
 	   menuControl.showOthers(false);
 		
 		// for the Checkout panel
@@ -121,7 +121,7 @@ import javax.swing.JTextField;
         selectedItemsList = new JList<>(selectedItemsModel);
         JScrollPane scrollPane = new JScrollPane(selectedItemsList); 
         selectedItemsList.setFont(new Font("Arial", Font.BOLD, 14));
-        selectedItemsModel.addElement(String.format("%-20s %10s", "PRODUCT", "PRICE"));
+        selectedItemsModel.addElement(String.format("%-20s %38s", "PRODUCT", "PRICE"));
         scrollPane.setBounds(15, 15, 339, 400);
         CheckOut.add(scrollPane);
        
@@ -138,17 +138,14 @@ import javax.swing.JTextField;
 		Remove_btn.setBackground(Color.WHITE);
 		Remove_btn.setBounds(187, 555, 132, 39);
 		
+	               	
 		
 		Remove_btn.addActionListener(e ->{	
 			
 		int selectedIndex = selectedItemsList.getSelectedIndex();
-		if(selectedIndex != -1) {
-			
-			selectedItemsModel.remove(selectedIndex);
-			howmuch.setText("TOTAL: ₱" + sum);
-			
-			
-		  }	
+	
+		    PriceUpdate.removeditem_updatetotal(selectedItemsModel, selectedIndex, howmuch, this);
+		
 		});
 		
 		CheckOut.add(Remove_btn);
@@ -209,82 +206,66 @@ import javax.swing.JTextField;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		Object source = e.getSource();
-				
-		if(source == btnFoods ) {
-			 menuControl.showFoods(false);
-			 menuControl.showDrinks(true);
-			 menuControl.showOthers(false);
-			
-			
-		}else if(source == btnDrinks) {
-			
-			 menuControl.showFoods(true);
-			 menuControl.showDrinks(false);
-			 menuControl.showOthers(false);
-			
-			
-			
-		}else if(source == btnOthers ) {
-			
-			
-			 menuControl.showFoods(false);
-			 menuControl.showDrinks(false);
-			 menuControl.showOthers(true);
-			
-		}else if (source == menuControl.getDrinks().getD1()) {
-			sum += 400;
-			howmuch.setText("TOTAL: ₱" + sum);
-            selectedItemsModel.addElement(" Siken 1                       400₱");
-        }
-		
-		else if (source == menuControl.getDrinks().getD2()) {
-        	sum += 240;
-			howmuch.setText("TOTAL: ₱" + sum);
-            selectedItemsModel.addElement(" Siken 2                       240₱");
-        } 
-		
-		else if (source == menuControl.getDrinks().getD3()) {
-        	sum += 100;
-			howmuch.setText("TOTAL: ₱" + sum);
-            selectedItemsModel.addElement(" Siken 3                       100₱");
-        } else if (source == menuControl.getDrinks().getD4()) {
-        	sum += 60;
-			howmuch.setText("TOTAL: ₱" + sum);
-        	selectedItemsModel.addElement(" Siken 3                        60₱");
-        } 
-        
-        else if (source == menuControl.getDrinks().getD5()) {
-        	sum += 70;
-			howmuch.setText("TOTAL: ₱" + sum);
-        	selectedItemsModel.addElement(" Siken 3                        70₱");
-        } 
-        
-        else if (source == menuControl.getDrinks().getD6()) {
-        	sum += 25;
-			howmuch.setText("TOTAL: ₱" + sum);
-            selectedItemsModel.addElement(" Siken 6                        25₱");
-        }
-		
-		
-		
-        else if (source == menuControl.getFoods().getc1()) {
-        	
-            selectedItemsModel.addElement(" Drink 1                       400₱");
-        } else if (source == menuControl.getFoods().getc2()) {
-            selectedItemsModel.addElement(" Drink 2                       240₱");
-        } else if (source == menuControl.getFoods().getc3()) {
-            selectedItemsModel.addElement(" Drink 3                       100₱");
-        } else if (source == menuControl.getFoods().getc4()) {
-        	selectedItemsModel.addElement(" Drink 4                        60₱");
-        } else if (source == menuControl.getFoods().getc5()) {
-        	selectedItemsModel.addElement(" Drink 5                        70₱");
-        } else if (source == menuControl.getFoods().getc6()) {
-            selectedItemsModel.addElement(" Drink 6                        25₱");
-        };
-		
-        
-		
+	    Object source = e.getSource();
+
+	    if (source == btnFoods) {
+	        menuControl.showFoods(true);
+	        menuControl.showDrinks(false);
+	        menuControl.showOthers(false);
+
+	    } else if (source == btnDrinks) {
+	        menuControl.showFoods(false);
+	        menuControl.showDrinks(true);
+	        menuControl.showOthers(false);
+
+	    } else if (source == btnOthers) {
+	        menuControl.showFoods(false);
+	        menuControl.showDrinks(false);
+	        menuControl.showOthers(true);
+
+	    } else if (source == menuControl.getDrinks().getD1()) {
+	        addItemToCart("Drink 1", 400);
+
+	    } else if (source == menuControl.getDrinks().getD2()) {
+	        addItemToCart("Drink 2", 240);
+
+	    } else if (source == menuControl.getDrinks().getD3()) {
+	        addItemToCart("Drink 3", 100);
+
+	    } else if (source == menuControl.getDrinks().getD4()) {
+	        addItemToCart("Drink 4", 60);
+
+	    } else if (source == menuControl.getDrinks().getD5()) {
+	        addItemToCart("Drink 5", 70);
+
+	    } else if (source == menuControl.getDrinks().getD6()) {
+	        addItemToCart("Drink 6", 25);
+
+	    } else if (source == menuControl.getFoods().getc1()) {
+	        addItemToCart("Food 1", 400);
+
+	    } else if (source == menuControl.getFoods().getc2()) {
+	        addItemToCart("Food 2", 240);
+
+	    } else if (source == menuControl.getFoods().getc3()) {
+	        addItemToCart("Food 3", 100);
+
+	    } else if (source == menuControl.getFoods().getc4()) {
+	        addItemToCart("Food 4", 60);
+
+	    } else if (source == menuControl.getFoods().getc5()) {
+	        addItemToCart("Food 5", 70);
+
+	    } else if (source == menuControl.getFoods().getc6()) {
+	        addItemToCart("Food 6", 25);
+	    }
 	}
+	
+	private void addItemToCart(String itemName, int price) {
+	    sum += price;
+	    howmuch.setText("TOTAL: ₱" + sum);
+	    selectedItemsModel.addElement(String.format(" %-20s %43s₱", itemName, price));
+	}
+
+
 }
