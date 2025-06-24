@@ -17,11 +17,7 @@ public class Foods{
 		ImageIcon Chicken1 = new ImageIcon("C:/JAVA.JOLLIBED/Pictures/chicken 1.png");
 	    Image imgckn1 = Chicken1.getImage();
 	    Image ScaledImg_ckn1 = imgckn1.getScaledInstance(130,130, Image.SCALE_SMOOTH);
-		
-	    
-	    
 	    c1 = new JButton(new ImageIcon(ScaledImg_ckn1));
-		c1.setBounds(40,30,120,120);
 		c1.setBounds(40,30,120,120);
 		c1.setBackground(Color.white);
 		c1.setOpaque(false);      
@@ -52,26 +48,35 @@ public class Foods{
         
 	    ImageIcon Chicken4 = new ImageIcon("C:/JAVA.JOLLIBED/Pictures/food (3).png");
 		Image imgckn4 = Chicken4.getImage();
-		Image ScaledImg_ckn4 = imgckn4.getScaledInstance(130,100, Image.SCALE_SMOOTH);
+		Image ScaledImg_ckn4 = imgckn4.getScaledInstance(150,120, Image.SCALE_SMOOTH);
         c4 = new JButton(new ImageIcon(ScaledImg_ckn4));
         c4.setBounds(200,210,120,120);
         c4.setOpaque(false);
-        c4.setBorderPainted(false);   
+        c4.setBorderPainted(false);  
+        c4.setBackground(null);
 	   
-        
-        c5 = new JButton("food 5");
+        ImageIcon Chicken5 = new ImageIcon("C:/JAVA.JOLLIBED/Pictures/food (4).png");
+        Image imgckn5 = Chicken5.getImage();
+        Image ScaledImg_ckn5 = imgckn5.getScaledInstance(120,121 ,Image.SCALE_SMOOTH);
+        c5 = new JButton(new ImageIcon(ScaledImg_ckn5));
         c5.setBounds(200,390,120,120);
+        c5.setBorderPainted(false);
+        c5.setBackground(null);
         
-        c6 = new JButton("food 6");
+        ImageIcon Chicken6 = new ImageIcon("C:/JAVA.JOLLIBED/Pictures/food (5).png");
+        Image imgckn6 = Chicken6.getImage();
+        Image ScaledImg_ckn6 = imgckn6.getScaledInstance(132,120,Image.SCALE_SMOOTH);
+        c6 = new JButton(new ImageIcon(ScaledImg_ckn6));
         c6.setBounds(200,30,120,120);
+        c6.setBackground(null);
+        c6.setBorderPainted(false);
 		
 	}
 	
-	
-	 public JButton getc1() {return c1;}                             // getters
+     public JButton getc1() {return c1;}                             // getters
      public JButton getc2() {return c2;}
-	 public JButton getc3() {return c3;}
-	 public JButton getc4() {return c4;}
+     public JButton getc3() {return c3;}
+     public JButton getc4() {return c4;}
      public JButton getc5() {return c5;}
      public JButton getc6() {return c6;}
 	
@@ -87,6 +92,11 @@ public class Foods{
          
        }
      
+   }
+
+		
+	
+
    }
 
 		
